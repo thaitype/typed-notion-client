@@ -1,5 +1,6 @@
-import { Client as NotionClient } from '@notionhq/client';
+import type { Client as NotionClient } from '@notionhq/client';
 import type { PageObjectResponse, QueryDatabaseParameters } from '@notionhq/client/build/src/api-endpoints';
+
 import type {
   CommonTypeFilter,
   MapResponseToNotionType,
@@ -7,6 +8,7 @@ import type {
   PageProperties,
   WithAuth,
 } from './types';
+
 import { NotionPage } from './notion-page';
 export type InferPropTypes<T> = T extends NotionDatabase<infer U> ? U : never;
 export type InferNotionDatabase<T> = NotionDatabase<InferPropTypes<T>>;
@@ -22,20 +24,18 @@ export type QueryPredidcate<T extends Record<string, PageProperties['type']>> = 
 export interface NotionDatabaseOptions<T extends Record<string, PageProperties['type']>> {
   notionClient: NotionClient;
   databaseId: string;
-  propTypes?:T;
+  propTypes?: T;
 }
 
 export class NotionDatabase<T extends Record<string, PageProperties['type']> = Record<string, PageProperties['type']>> {
   propTypes: T = {} as T;
   public readonly notion: NotionClient;
-  public readonly databaseId: string
+  public readonly databaseId: string;
 
-  constructor(
-    public readonly option: NotionDatabaseOptions<T>
-  ) {
+  constructor(public readonly option: NotionDatabaseOptions<T>) {
     this.notion = option.notionClient;
     this.databaseId = option.databaseId;
-    this.propTypes = option.propTypes ?? {} as T;
+    this.propTypes = option.propTypes ?? ({} as T);
   }
 
   // setPropTypes<const T extends Record<string, PageProperties['type']>>(props: T) {
@@ -111,7 +111,7 @@ export class NotionDatabase<T extends Record<string, PageProperties['type']> = R
           } as CommonTypeFilter),
       };
     }
-    if(Object.keys(injectProps).length === 0) {
+    if (Object.keys(injectProps).length === 0) {
       throw new Error(`No prop type provided, please define typeProps in the constructor before calling query`);
     }
     return funcOrArgs(injectProps as MapTypePropertyFilter<T>);
@@ -123,8 +123,7 @@ export class NotionDatabase<T extends Record<string, PageProperties['type']> = R
       propTypes: this.propTypes,
       parent: {
         database_id: this.databaseId,
-      }
+      },
     });
   }
 }
-

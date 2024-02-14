@@ -1,7 +1,9 @@
-import { Client as NotionClient } from '@notionhq/client';
+import type { Client as NotionClient } from '@notionhq/client';
 import type { CreatePageParameters, PageObjectResponse } from '@notionhq/client/build/src/api-endpoints';
-import type { MapTypeCreatePageProperties, PageProperties } from './types';
+
 import invariant from 'tiny-invariant';
+
+import type { MapTypeCreatePageProperties, PageProperties } from './types';
 
 export type PageParent = CreatePageParameters['parent'];
 export type CreatePageArgs = Omit<CreatePageParameters, 'parent'>;

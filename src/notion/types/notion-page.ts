@@ -1,7 +1,8 @@
-import { CreatePageParameters } from '@notionhq/client/build/src/api-endpoints';
-import { ExtractRecordValue } from './utils';
-import { PageProperties } from './notion-database';
-import { Expect, ExpectExtends } from './type-check';
+import type { CreatePageParameters } from '@notionhq/client/build/src/api-endpoints';
+
+import type { ExtractRecordValue } from './utils';
+import type { PageProperties } from './notion-database';
+import type { Expect, ExpectExtends } from './type-check';
 
 // From @notionhq/client
 export type CreatePageProperties = ExtractRecordValue<CreatePageParameters['properties']>;

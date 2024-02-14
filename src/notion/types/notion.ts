@@ -23,11 +23,9 @@ export type DateRequest = {
   time_zone?: TimeZoneRequest | null;
 };
 
-
 // ------------------------------
 // Filter
 // ------------------------------
-
 
 // ----------------------------------------
 export type PropertyFilter =

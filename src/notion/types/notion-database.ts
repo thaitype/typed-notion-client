@@ -1,7 +1,7 @@
-import { PageObjectResponse, RichTextItemResponse } from '@notionhq/client/build/src/api-endpoints';
-import { DateResponse } from './notion';
-import { Expect, ExpectExtends } from './type-check';
-import { ExtractRecordValue } from './utils';
+import type { PageObjectResponse } from '@notionhq/client/build/src/api-endpoints';
+
+import type { ExtractRecordValue } from './utils';
+import type { Expect, ExpectExtends } from './type-check';
 
 // From @notionhq/client
 export type PageProperties = ExtractRecordValue<PageObjectResponse['properties']>;

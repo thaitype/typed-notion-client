@@ -1,7 +1,8 @@
-import { QueryDatabaseParameters } from '@notionhq/client/build/src/api-endpoints';
-import { Expect, ExpectExtends } from './type-check';
-import { PageProperties, NumberProp } from './notion-database';
-import { PropertyFilter } from './notion';
+import type { QueryDatabaseParameters } from '@notionhq/client/build/src/api-endpoints';
+
+import type { PropertyFilter } from './notion';
+import type { PageProperties } from './notion-database';
+import type { Expect, ExpectExtends } from './type-check';
 
 export type QueryFilterArgs = QueryDatabaseParameters['filter'];
 
