@@ -25,9 +25,8 @@
     "lint:fix": "eslint --fix ./src && prettier -w src",
     "tsx": "tsx",
     "test:watch": "vitest",
-    "copy-view": "tsx scripts/copy-view",
     "clean": "rimraf dist",
-    "prepublishOnly": "run-s clean all copy-view",
+    "prepublishOnly": "run-s clean all",
     "test": "vitest run"
   },
   "devDependencies": {
