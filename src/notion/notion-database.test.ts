@@ -65,4 +65,23 @@ describe('Test processQueryPredicate', () => {
       },
     });
   });
+
+  // test('When predicate is function, with helper function but it does not calling prop predicate, should throw error', () => {
+  //   expect(() =>
+  //     new FakeNotionDatabase({
+  //       ...sharedOptions,
+  //       propTypes: {
+  //         Test: 'date',
+  //       },
+  //     }).processQueryPredicate(() => ({
+  //       filter: {
+  //         property: 'Test',
+  //         date: {
+  //           is_empty: true,
+  //         },
+  //       },
+  //     }))
+  //   ).toThrowError(`No prop type provided, please define typeProps in the constructor before calling query`);
+
+  // });
 });

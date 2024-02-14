@@ -74,8 +74,18 @@ export class NotionPage<T extends Record<string, PageProperties['type']> = Recor
       return funcOrArgs;
     }
     const injectProps: Record<string, unknown> = {};
-    throw new Error(`Not implemented`);
+    for (const propName of Object.keys(this.propTypes)) {
+      injectProps[propName] = {
+        params: (params: Record<string, unknown>) => ({
+          [propName]: params,
+        }),
+      };
+    }
 
-    // return funcOrArgs(injectProps as );
+    if (Object.keys(injectProps).length === 0) {
+      throw new Error(`No prop type provided, please define typeProps in the constructor before calling query`);
+    }
+
+    return funcOrArgs(injectProps as MapTypeCreatePageProperties<T>);
   }
 }
