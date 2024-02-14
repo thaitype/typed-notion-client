@@ -9,7 +9,7 @@ export type CreatePageProperties = ExtractRecordValue<CreatePageParameters['prop
 
 export type MapTypeCreatePageProperties<T extends Record<string, PageProperties['type']>> = {
   [K in keyof T]: {
-    value: (args: MapTypeToNotionType<T[K]>) => {
+    params: (args: MapTypeToNotionType<T[K]>) => {
       [P in K]: MapTypeToNotionType<T[K]>;
     };
   };

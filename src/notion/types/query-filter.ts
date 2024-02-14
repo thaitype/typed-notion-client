@@ -8,7 +8,7 @@ export type QueryFilterArgs = QueryDatabaseParameters['filter'];
 
 export type MapTypePropertyFilter<T extends Record<string, PageProperties['type']>> = {
   [K in keyof T]: {
-    filter: (args: Omit<MapTypeToNotionType<T[K], K>, 'property' | 'type'>) => MapTypeToNotionType<T[K], K>;
+    params: (args: Omit<MapTypeToNotionType<T[K], K>, 'property' | 'type'>) => MapTypeToNotionType<T[K], K>;
   };
 };
 

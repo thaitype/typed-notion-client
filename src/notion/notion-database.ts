@@ -10,8 +10,6 @@ import type {
 } from './types';
 
 import { NotionPage } from './notion-page';
-export type InferPropTypes<T> = T extends NotionDatabase<infer U> ? U : never;
-export type InferNotionDatabase<T> = NotionDatabase<InferPropTypes<T>>;
 
 export type TypedPageObjectResponse<T> = Omit<PageObjectResponse, 'properties'> & {
   properties: T;

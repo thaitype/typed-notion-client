@@ -4,7 +4,7 @@ module.exports = {
   parser: '@typescript-eslint/parser',
   plugins: ['@typescript-eslint', 'perfectionist', 'unused-imports'],
   root: true,
-  ignorePatterns: ['**.test.ts'],
+  ignorePatterns: ['**.test.ts', 'examples/**', 'dist/**', 'node_modules/**'],
   rules: {
     /**
      * Unused import and vars:
