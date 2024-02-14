@@ -49,7 +49,7 @@ describe('Test processQueryPredicate', () => {
           Test: 'date',
         },
       }).processQueryPredicate(prop => ({
-        filter: prop['Test'].filter({
+        filter: prop['Test'].params({
           date: {
             is_empty: true,
           },

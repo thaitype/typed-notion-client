@@ -101,7 +101,7 @@ export class NotionDatabase<T extends Record<string, PageProperties['type']> = R
     const injectProps: Record<string, unknown> = {};
     for (const [propName, propType] of Object.entries(this.propTypes)) {
       injectProps[propName] = {
-        filter: (filterProp: Record<string, unknown>) =>
+        params: (filterProp: Record<string, unknown>) =>
           ({
             ...filterProp,
             property: propName,
