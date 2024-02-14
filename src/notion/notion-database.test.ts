@@ -8,7 +8,7 @@ const sharedOptions = {
 };
 
 class FakeNotionDatabase<T extends Record<string, PageProperties['type']>> extends NotionDatabase<T> {
-  processQueryPredicate = super.processQueryPredicate;
+  override processQueryPredicate = super.processQueryPredicate;
 
   // setPropTypes<const T extends Record<string, PageProperties['type']>>(props: T) {
   //   super.setPropTypes(props);

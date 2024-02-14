@@ -1,1 +1,1 @@
-console.log('main.ts')
+export * from './notion';

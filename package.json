@@ -18,7 +18,7 @@
   ],
   "scripts": {
     "all": "run-s lint test build",
-    "build": "tsup src/main.ts --dts --format esm,cjs --target es2020",
+    "build": "tsup src/main.ts --dts --format esm,cjs",
     "release": "npm run build && changeset publish",
     "format": "prettier -w src",
     "lint": "tsc --noEmit && eslint ./src && prettier -c src",
@@ -65,9 +65,10 @@
     "registry": "https://registry.npmjs.org/"
   },
   "dependencies": {
+    "@notionhq/client": "^2.2.14",
     "dayjs": "^1.11.10",
     "pino": "^8.17.2",
-    "@notionhq/client": "^2.2.14",
-    "pino-pretty": "^10.3.1"
+    "pino-pretty": "^10.3.1",
+    "tiny-invariant": "^1.3.1"
   }
 }
