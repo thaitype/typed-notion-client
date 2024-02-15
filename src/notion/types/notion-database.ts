@@ -6,9 +6,14 @@ import type { Expect, ExpectExtends } from './type-check';
 // From @notionhq/client
 export type PageProperties = ExtractRecordValue<PageObjectResponse['properties']>;
 
-export type NumberProp = Extract<PageProperties, { type: 'number' }>;
-export type DateProp = Extract<PageProperties, { type: 'date' }>;
-export type TitleProp = Extract<PageProperties, { type: 'title' }>;
+type NumberProp = Extract<PageProperties, { type: 'number' }>;
+type DateProp = Extract<PageProperties, { type: 'date' }>;
+type TitleProp = Extract<PageProperties, { type: 'title' }>;
+type RichTextProp = Extract<PageProperties, { type: 'rich_text' }>;
+type SelectProp = Extract<PageProperties, { type: 'select' }>;
+type StatusProp = Extract<PageProperties, { type: 'status' }>;
+type PeopleProp = Extract<PageProperties, { type: 'people' }>;
+type UrlProp = Extract<PageProperties, { type: 'url' }>;
 
 /**
  * The redefined type is still matched the original type
@@ -16,7 +21,12 @@ export type TitleProp = Extract<PageProperties, { type: 'title' }>;
 type Test = [
   Expect<ExpectExtends<PageProperties, NumberProp>>,
   Expect<ExpectExtends<PageProperties, DateProp>>,
-  Expect<ExpectExtends<PageProperties, TitleProp>>
+  Expect<ExpectExtends<PageProperties, TitleProp>>,
+  Expect<ExpectExtends<PageProperties, RichTextProp>>,
+  Expect<ExpectExtends<PageProperties, SelectProp>>,
+  Expect<ExpectExtends<PageProperties, StatusProp>>,
+  Expect<ExpectExtends<PageProperties, PeopleProp>>,
+  Expect<ExpectExtends<PageProperties, UrlProp>>,
 ];
 
 export type MapResponseToNotionType<T extends Record<string, PageProperties['type']>> = {
@@ -29,4 +39,14 @@ export type MapTypeToNotionType<T extends PageProperties['type']> = T extends Nu
   ? TitleProp
   : T extends DateProp['type']
   ? DateProp
+  : T extends RichTextProp['type']
+  ? RichTextProp
+  : T extends SelectProp['type']
+  ? SelectProp
+  : T extends StatusProp['type']
+  ? StatusProp
+  : T extends PeopleProp['type']
+  ? PeopleProp
+  : T extends UrlProp['type']
+  ? UrlProp
   : never;

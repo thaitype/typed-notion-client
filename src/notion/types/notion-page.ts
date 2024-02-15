@@ -21,14 +21,26 @@ type MapTypeToNotionType<TType extends PageProperties['type']> = TType extends N
   ? DatePropCreatePage
   : TType extends NonNullable<TitlePropCreatePage['type']>
   ? TitlePropCreatePage
-  : /**
-     * Fall back to any record
-     */
-    Record<string, unknown>;
+  : TType extends NonNullable<RichTextProp['type']>
+  ? RichTextProp
+  : TType extends NonNullable<SelectProp['type']>
+  ? SelectProp
+  : TType extends NonNullable<StatusProp['type']>
+  ? StatusProp
+  : TType extends NonNullable<PeopleProp['type']>
+  ? PeopleProp
+  : TType extends NonNullable<UrlProp['type']>
+  ? UrlProp
+  : never;
 
 export type DatePropCreatePage = Extract<CreatePageProperties, { type?: 'date' }>;
 export type NumberPropCreatePage = Extract<CreatePageProperties, { type?: 'number' }>;
 export type TitlePropCreatePage = Extract<CreatePageProperties, { type?: 'title' }>;
+export type RichTextProp  = Extract<CreatePageProperties, { type?: 'rich_text' }>;
+export type SelectProp = Extract<CreatePageProperties, { type?: 'select' }>;
+export type StatusProp = Extract<CreatePageProperties, { type?: 'status' }>;
+export type PeopleProp = Extract<CreatePageProperties, { type?: 'people' }>;
+export type UrlProp = Extract<CreatePageProperties, { type?: 'url' }>;
 
 /**
  * The redefined type is still matched the original type
@@ -36,5 +48,10 @@ export type TitlePropCreatePage = Extract<CreatePageProperties, { type?: 'title'
 type Test = [
   Expect<ExpectExtends<CreatePageProperties, NumberPropCreatePage>>,
   Expect<ExpectExtends<CreatePageProperties, DatePropCreatePage>>,
-  Expect<ExpectExtends<CreatePageProperties, TitlePropCreatePage>>
+  Expect<ExpectExtends<CreatePageProperties, TitlePropCreatePage>>,
+  Expect<ExpectExtends<CreatePageProperties, RichTextProp>>,
+  Expect<ExpectExtends<CreatePageProperties, SelectProp>>,
+  Expect<ExpectExtends<CreatePageProperties, StatusProp>>,
+  Expect<ExpectExtends<CreatePageProperties, PeopleProp>>,
+  Expect<ExpectExtends<CreatePageProperties, UrlProp>>,
 ];

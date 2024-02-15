@@ -15,6 +15,7 @@ export const myDatabase = new NotionDatabase({
   propTypes: {
     Name: 'title',
     Date: 'date',
+    Note: 'rich_text',
   },
 });
 
@@ -25,11 +26,20 @@ export const myDatabase = new NotionDatabase({
 async function createPage() {
   const page = await myDatabase.page.create(prop => ({
     properties: {
+      ...prop['Note'].params({
+        rich_text: [
+          {
+            text: {
+              content: 'My Note!',
+            },
+          },
+        ]
+      }),
       ...prop['Name'].params({
         title: [
           {
             text: {
-              content: 'Hello, World!',
+              content: 'Hello, world!',
             },
           },
         ],
