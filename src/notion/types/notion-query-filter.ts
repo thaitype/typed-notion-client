@@ -42,87 +42,26 @@ export interface CommonTypeFilter {
 }
 
 // TODO: Fix TProp later, it should be only string
-export type NumberPropFilter<TProp extends keyof any = string> = Omit<
-  Extract<PropertyFilter, { type?: 'number' }>,
+/**
+ * Extract the property filter from the original type
+ */
+export type ExtractPropertyFilter<TSignature, TProp extends keyof any> = Omit<
+  Extract<PropertyFilter, TSignature>,
   'property'
 > & {
   property: TProp;
 };
 
-
-// TODO: Fix TProp later, it should be only string
-export type DatePropFilter<TProp extends keyof any = string> = Omit<
-  Extract<PropertyFilter, { type?: 'date' }>,
-  'property'
-> & {
-  property: TProp;
-};
-
-
-// TODO: Fix TProp later, it should be only string
-export type TitlePropFilter<TProp extends keyof any = string> = Omit<
-  Extract<PropertyFilter, { type?: 'title' }>,
-  'property'
-> & {
-  property: TProp;
-};
-
-// TODO: Fix TProp later, it should be only string
-export type RichTextPropFilter<TProp extends keyof any = string> = Omit<
-  Extract<PropertyFilter, { type?: 'rich_text' }>,
-  'property'
-> & {
-  property: TProp;
-};
-
-// TODO: Fix TProp later, it should be only string
-export type SelectPropFilter<TProp extends keyof any = string> = Omit<
-  Extract<PropertyFilter, { type?: 'select' }>,
-  'property'
-> & {
-  property: TProp;
-};
-
-// TODO: Fix TProp later, it should be only string
-export type StatusPropFilter<TProp extends keyof any = string> = Omit<
-  Extract<PropertyFilter, { type?: 'status' }>,
-  'property'
-> & {
-  property: TProp;
-};
-
-// TODO: Fix TProp later, it should be only string
-export type PeoplePropFilter<TProp extends keyof any = string> = Omit<
-  Extract<PropertyFilter, { type?: 'people' }>,
-  'property'
-> & {
-  property: TProp;
-};
-
-// TODO: Fix TProp later, it should be only string
-export type UrlPropFilter<TProp extends keyof any = string> = Omit<
-  Extract<PropertyFilter, { type?: 'url' }>,
-  'property'
-> & {
-  property: TProp;
-};
-
-// TODO: Fix TProp later, it should be only string
-export type CreatedTimePropFilter<TProp extends keyof any = string> = Omit<
-  Extract<PropertyFilter, { type?: 'created_time' }>,
-  'property'
-> & {
-  property: TProp;
-};
-
-// TODO: Fix TProp later, it should be only string
-export type LastEditedTimePropFilter<TProp extends keyof any = string> = Omit<
-  Extract<PropertyFilter, { type?: 'last_edited_time' }>,
-  'property'
-> & {
-  property: TProp;
-};
-
+export type NumberPropFilter<TProp extends keyof any = string> = ExtractPropertyFilter<{ type?: 'number' }, TProp>;
+export type DatePropFilter<TProp extends keyof any = string> = ExtractPropertyFilter<{ type?: 'date' }, TProp>;
+export type TitlePropFilter<TProp extends keyof any = string> = ExtractPropertyFilter<{ type?: 'title' }, TProp>;
+export type RichTextPropFilter<TProp extends keyof any = string> = ExtractPropertyFilter<{ type?: 'rich_text' }, TProp>;
+export type SelectPropFilter<TProp extends keyof any = string> = ExtractPropertyFilter<{ type?: 'select' }, TProp>;
+export type StatusPropFilter<TProp extends keyof any = string> = ExtractPropertyFilter<{ type?: 'status' }, TProp>;
+export type PeoplePropFilter<TProp extends keyof any = string> = ExtractPropertyFilter<{ type?: 'people' }, TProp>;
+export type UrlPropFilter<TProp extends keyof any = string> = ExtractPropertyFilter<{ type?: 'url' }, TProp>;
+export type CreatedTimePropFilter<TProp extends keyof any = string> = ExtractPropertyFilter<{ type?: 'created_time' }, TProp>;
+export type LastEditedTimePropFilter<TProp extends keyof any = string> = ExtractPropertyFilter<{ type?: 'last_edited_time' }, TProp>;
 
 /**
  * The redefined type is still matched the original type
