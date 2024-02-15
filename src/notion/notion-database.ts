@@ -7,6 +7,7 @@ import type {
   MapTypePropertyFilter,
   PageProperties,
   WithAuth,
+  TypedQueryDatabaseResponse,
 } from './types';
 
 import { NotionPage } from './notion-page';
@@ -81,7 +82,7 @@ export class NotionDatabase<T extends Record<string, PageProperties['type']> = R
    */
   async query(
     func?: QueryPredidcate<T> | NotionDatabaseQueryArgs
-  ): Promise<TypedPageObjectResponse<MapResponseToNotionType<T>>[]> {
+  ): Promise<TypedQueryDatabaseResponse<TypedPageObjectResponse<MapResponseToNotionType<T>>>> {
     await this.validate();
     const response = await this.notion.databases.query({
       database_id: this.databaseId,
@@ -90,7 +91,12 @@ export class NotionDatabase<T extends Record<string, PageProperties['type']> = R
     const results = response.results.filter(page => NotionPage.isPageObjectResponse(page)) as TypedPageObjectResponse<
       MapResponseToNotionType<T>
     >[];
-    return results;
+    const untypedResults = response.results.filter(page => !NotionPage.isPageObjectResponse(page));
+    return {
+      ...response,
+      results,
+      untypedResults,
+    };
   }
 
   protected processQueryPredicate(

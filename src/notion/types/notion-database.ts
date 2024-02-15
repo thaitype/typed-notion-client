@@ -1,10 +1,14 @@
-import type { PageObjectResponse } from '@notionhq/client/build/src/api-endpoints';
+import type { PageObjectResponse, QueryDatabaseResponse } from '@notionhq/client/build/src/api-endpoints';
 
 import type { ExtractRecordValue } from './utils';
 import type { Expect, ExpectExtends } from './type-check';
 
 // From @notionhq/client
 export type PageProperties = ExtractRecordValue<PageObjectResponse['properties']>;
+export type TypedQueryDatabaseResponse<T> = Omit<QueryDatabaseResponse, 'results'> & {
+  untypedResults: QueryDatabaseResponse['results'];
+  results: T[];
+};
 
 type NumberProp = Extract<PageProperties, { type: 'number' }>;
 type DateProp = Extract<PageProperties, { type: 'date' }>;

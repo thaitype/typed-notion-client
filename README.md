@@ -70,7 +70,7 @@ async function filterToday() {
       },
     }),
   }));
-  for (const page of pages) {
+  for (const page of pages.results) {
     const title = page.properties.Name.title[0].plain_text;
     console.log(`Today's page: ${page.id} - ${title}`);
   }
