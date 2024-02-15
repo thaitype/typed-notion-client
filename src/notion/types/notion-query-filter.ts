@@ -60,8 +60,14 @@ export type SelectPropFilter<TProp extends keyof any = string> = ExtractProperty
 export type StatusPropFilter<TProp extends keyof any = string> = ExtractPropertyFilter<{ type?: 'status' }, TProp>;
 export type PeoplePropFilter<TProp extends keyof any = string> = ExtractPropertyFilter<{ type?: 'people' }, TProp>;
 export type UrlPropFilter<TProp extends keyof any = string> = ExtractPropertyFilter<{ type?: 'url' }, TProp>;
-export type CreatedTimePropFilter<TProp extends keyof any = string> = ExtractPropertyFilter<{ type?: 'created_time' }, TProp>;
-export type LastEditedTimePropFilter<TProp extends keyof any = string> = ExtractPropertyFilter<{ type?: 'last_edited_time' }, TProp>;
+export type CreatedTimePropFilter<TProp extends keyof any = string> = ExtractPropertyFilter<
+  { type?: 'created_time' },
+  TProp
+>;
+export type LastEditedTimePropFilter<TProp extends keyof any = string> = ExtractPropertyFilter<
+  { type?: 'last_edited_time' },
+  TProp
+>;
 
 /**
  * The redefined type is still matched the original type
@@ -76,5 +82,5 @@ type Test = [
   Expect<ExpectExtends<QueryFilterArgs, PeoplePropFilter>>,
   Expect<ExpectExtends<QueryFilterArgs, UrlPropFilter>>,
   Expect<ExpectExtends<QueryFilterArgs, CreatedTimePropFilter>>,
-  Expect<ExpectExtends<QueryFilterArgs, LastEditedTimePropFilter>>,
+  Expect<ExpectExtends<QueryFilterArgs, LastEditedTimePropFilter>>
 ];

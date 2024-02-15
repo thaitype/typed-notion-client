@@ -1,6 +1,6 @@
 {
   "name": "typed-notion-client",
-  "version": "0.0.0-internal.2",
+  "version": "0.0.0-internal.3",
   "description": "Type-safe Notion API client",
   "main": "./dist/main.js",
   "module": "./dist/main.mjs",

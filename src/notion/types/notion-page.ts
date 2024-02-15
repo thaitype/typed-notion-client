@@ -40,7 +40,7 @@ type MapTypeToNotionType<TType extends PageProperties['type']> = TType extends N
 export type DatePropCreatePage = Extract<CreatePageProperties, { type?: 'date' }>;
 export type NumberPropCreatePage = Extract<CreatePageProperties, { type?: 'number' }>;
 export type TitlePropCreatePage = Extract<CreatePageProperties, { type?: 'title' }>;
-export type RichTextProp  = Extract<CreatePageProperties, { type?: 'rich_text' }>;
+export type RichTextProp = Extract<CreatePageProperties, { type?: 'rich_text' }>;
 export type SelectProp = Extract<CreatePageProperties, { type?: 'select' }>;
 export type StatusProp = Extract<CreatePageProperties, { type?: 'status' }>;
 export type PeopleProp = Extract<CreatePageProperties, { type?: 'people' }>;
@@ -61,5 +61,5 @@ type Test = [
   Expect<ExpectExtends<CreatePageProperties, PeopleProp>>,
   Expect<ExpectExtends<CreatePageProperties, UrlProp>>,
   Expect<ExpectExtends<CreatePageProperties, CreatedTimeProp>>,
-  Expect<ExpectExtends<CreatePageProperties, LastEditedTimeProp>>,
+  Expect<ExpectExtends<CreatePageProperties, LastEditedTimeProp>>
 ];

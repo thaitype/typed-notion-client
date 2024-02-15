@@ -30,7 +30,7 @@ type Test = [
   Expect<ExpectExtends<PageProperties, PeopleProp>>,
   Expect<ExpectExtends<PageProperties, UrlProp>>,
   Expect<ExpectExtends<PageProperties, CreatedTimeProp>>,
-  Expect<ExpectExtends<PageProperties, LastEditedTimeProp>>,
+  Expect<ExpectExtends<PageProperties, LastEditedTimeProp>>
 ];
 
 export type MapResponseToNotionType<T extends Record<string, PageProperties['type']>> = {
@@ -52,7 +52,7 @@ export type MapTypeToNotionType<T extends PageProperties['type']> = T extends Nu
   : T extends PeopleProp['type']
   ? PeopleProp
   : T extends UrlProp['type']
-  ? UrlProp 
+  ? UrlProp
   : T extends CreatedTimeProp['type']
   ? CreatedTimeProp
   : T extends LastEditedTimeProp['type']
