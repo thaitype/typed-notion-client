@@ -14,6 +14,8 @@ type SelectProp = Extract<PageProperties, { type: 'select' }>;
 type StatusProp = Extract<PageProperties, { type: 'status' }>;
 type PeopleProp = Extract<PageProperties, { type: 'people' }>;
 type UrlProp = Extract<PageProperties, { type: 'url' }>;
+type CreatedTimeProp = Extract<PageProperties, { type: 'created_time' }>;
+type LastEditedTimeProp = Extract<PageProperties, { type: 'last_edited_time' }>;
 
 /**
  * The redefined type is still matched the original type
@@ -27,6 +29,8 @@ type Test = [
   Expect<ExpectExtends<PageProperties, StatusProp>>,
   Expect<ExpectExtends<PageProperties, PeopleProp>>,
   Expect<ExpectExtends<PageProperties, UrlProp>>,
+  Expect<ExpectExtends<PageProperties, CreatedTimeProp>>,
+  Expect<ExpectExtends<PageProperties, LastEditedTimeProp>>,
 ];
 
 export type MapResponseToNotionType<T extends Record<string, PageProperties['type']>> = {
@@ -48,5 +52,9 @@ export type MapTypeToNotionType<T extends PageProperties['type']> = T extends Nu
   : T extends PeopleProp['type']
   ? PeopleProp
   : T extends UrlProp['type']
-  ? UrlProp
+  ? UrlProp 
+  : T extends CreatedTimeProp['type']
+  ? CreatedTimeProp
+  : T extends LastEditedTimeProp['type']
+  ? LastEditedTimeProp
   : never;

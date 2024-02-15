@@ -31,6 +31,10 @@ type MapTypeToNotionType<TType extends PageProperties['type']> = TType extends N
   ? PeopleProp
   : TType extends NonNullable<UrlProp['type']>
   ? UrlProp
+  : TType extends NonNullable<CreatedTimeProp['type']>
+  ? CreatedTimeProp
+  : TType extends NonNullable<LastEditedTimeProp['type']>
+  ? LastEditedTimeProp
   : never;
 
 export type DatePropCreatePage = Extract<CreatePageProperties, { type?: 'date' }>;
@@ -41,6 +45,8 @@ export type SelectProp = Extract<CreatePageProperties, { type?: 'select' }>;
 export type StatusProp = Extract<CreatePageProperties, { type?: 'status' }>;
 export type PeopleProp = Extract<CreatePageProperties, { type?: 'people' }>;
 export type UrlProp = Extract<CreatePageProperties, { type?: 'url' }>;
+export type CreatedTimeProp = Extract<CreatePageProperties, { type?: 'created_time' }>;
+export type LastEditedTimeProp = Extract<CreatePageProperties, { type?: 'last_edited_time' }>;
 
 /**
  * The redefined type is still matched the original type
@@ -54,4 +60,6 @@ type Test = [
   Expect<ExpectExtends<CreatePageProperties, StatusProp>>,
   Expect<ExpectExtends<CreatePageProperties, PeopleProp>>,
   Expect<ExpectExtends<CreatePageProperties, UrlProp>>,
+  Expect<ExpectExtends<CreatePageProperties, CreatedTimeProp>>,
+  Expect<ExpectExtends<CreatePageProperties, LastEditedTimeProp>>,
 ];

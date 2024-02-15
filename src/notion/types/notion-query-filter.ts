@@ -30,6 +30,10 @@ type MapTypeToNotionType<TType extends PageProperties['type'], TProp extends key
   ? PeoplePropFilter<TProp>
   : TType extends NonNullable<UrlPropFilter<TType>['type']>
   ? UrlPropFilter<TProp>
+  : TType extends NonNullable<CreatedTimePropFilter<TType>['type']>
+  ? CreatedTimePropFilter<TProp>
+  : TType extends NonNullable<LastEditedTimePropFilter<TType>['type']>
+  ? LastEditedTimePropFilter<TProp>
   : never;
 
 export interface CommonTypeFilter {
@@ -103,6 +107,22 @@ export type UrlPropFilter<TProp extends keyof any = string> = Omit<
   property: TProp;
 };
 
+// TODO: Fix TProp later, it should be only string
+export type CreatedTimePropFilter<TProp extends keyof any = string> = Omit<
+  Extract<PropertyFilter, { type?: 'created_time' }>,
+  'property'
+> & {
+  property: TProp;
+};
+
+// TODO: Fix TProp later, it should be only string
+export type LastEditedTimePropFilter<TProp extends keyof any = string> = Omit<
+  Extract<PropertyFilter, { type?: 'last_edited_time' }>,
+  'property'
+> & {
+  property: TProp;
+};
+
 
 /**
  * The redefined type is still matched the original type
@@ -116,4 +136,6 @@ type Test = [
   Expect<ExpectExtends<QueryFilterArgs, StatusPropFilter>>,
   Expect<ExpectExtends<QueryFilterArgs, PeoplePropFilter>>,
   Expect<ExpectExtends<QueryFilterArgs, UrlPropFilter>>,
+  Expect<ExpectExtends<QueryFilterArgs, CreatedTimePropFilter>>,
+  Expect<ExpectExtends<QueryFilterArgs, LastEditedTimePropFilter>>,
 ];
